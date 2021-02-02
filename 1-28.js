@@ -36,7 +36,92 @@ const quickSort = arr => {
     return quickSort(left).concat([pivot]).concat(quickSort(right));
 }
 
-// console.log(pilePick(piles));
-console.log(pilePick(piles));
+// Given a string S of '(' and ')' parentheses, we add the minimum number of parentheses('(' or ')', and in any positions) so that the resulting parentheses string is valid.
 
+// Formally, a parentheses string is valid if and only if:
+
+// It is the empty string, or
+// It can be written as AB (A concatenated with B), where A and B are valid strings, or
+// It can be written as (A), where A is a valid string.
+// Given a parentheses string, return the minimum number of parentheses we must add to make the resulting string valid.
+
+var minAddToMakeValid = function (S) {
+    let result = 0;
+    let balance = 0;
+
+    for (let i = 0; i < S.length; i++) {
+        if (S[i] === '(') {
+            balance += 1;
+        } else {
+            balance += -1;
+        }
+
+        if (balance == -1) {
+            result += 1;
+            balance += 1;
+        }
+    }
+
+    return result + balance;
+
+};
+
+const mergeSort = arr => {
+    if (arr.length < 2) return arr;
+    const mid = arr.length / 2
+
+    const left = arr.slice(0, mid);
+    const right = arr.slice(mid);
+
+    return merge(mergeSort(left), mergeSort(right));
+}
+
+const merge = (left, right) => {
+    const result = [];
+    while(left.length && right.length) {
+        if(left[0] <= right[0]) {
+            result.push(left.shift());
+        } else {
+            result.push(right.shift());
+        }
+    }
+
+    return result.concat(left).concat(right);
+}
+
+
+const bubbleSort = arr => {
+    let swapped = true;
+
+    while(swapped) {
+        swapped = false;
+        for(let i = 0; i < arr.length - 1; i++) {
+            if (arr[i] > arr[i + 1]) {
+                let temp = arr[i + 1];
+                arr[i + 1] = arr[i];
+                arr[i] = temp;
+                swapped = true;
+            }
+        }
+    }
+
+    return arr;
+}
+
+let string = 'asd';
+
+function subStrings(string){
+    const result = [];
+
+    for(let i = 0; i < string.length; i++) {
+        for(let j = i; j < string.length; j++) {
+            let sub = string.substring(i, i + j + 1);
+            if (sub) result.push(sub);
+        }
+    }
+
+    return result;
+}
+
+console.log(subStrings(string));
 
