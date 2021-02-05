@@ -8,10 +8,9 @@
 //     Node 4 -> (3, 4) is the maximum value in the path starting from the root.
 //         Node 5 -> (3, 4, 5) is the maximum value in the path
 // Node 3 -> (3, 1, 3) is the maximum value in the path.
-
 var goodNodes = function (root) {
 
-    let count = 1;
+    let count = 0;
     const path = [];
     let stack = [root];
     const explored = new Set();
@@ -20,12 +19,11 @@ var goodNodes = function (root) {
         let top = stack.pop();
         if (!top) {
             //a leaf has been reached
-            count += goodNodeCountInPath(path);
+            count += goodNodeCountInPath(path, explored);
             while (explored.has(path[path.length - 1]) && path[path.length - 1] != root) {
                 path.pop();
             }
         } else {
-            explored.add(top);
             path.push(top);
             stack.push(top.right);
             stack.push(top.left);
@@ -37,17 +35,20 @@ var goodNodes = function (root) {
 
 };
 
-const goodNodeCountInPath = path => {
+const goodNodeCountInPath = (path, explored) => {
 
-    let count = -1;
+    let count = 0;
     let pathMax = 0;
-
+    console.log(path)
     for (let i = 0; i < path.length; i++) {
         let node = path[i];
         if (node.val >= pathMax) {
-            count += 1;
+            if (!explored.has(node)) {
+                count += 1;
+            }
             pathMax = node.val;
         }
+        explored.add(node);
     }
 
     return count;
