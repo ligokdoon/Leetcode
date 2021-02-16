@@ -6,28 +6,28 @@ function solution(N) {
         for (let i = 1; i < numString.length; i++) {
             let currDigit = numString[i];
 
-            if (parseInt(currDigit, 10) > 5) {
+            if (parseInt(currDigit) > 5) {
                 numString[i] = '5' + currDigit;
                 inserted = true;
                 break;
             }
         }
 
-        if (!inserted) numString.push('5');
+        
     } else {
         for (let i = 0; i < numString.length; i++) {
             let currDigit = numString[i];
 
-            if (parseInt(currDigit, 10) <= 5) {
+            if (parseInt(currDigit) <= 5) {
                 numString[i] = '5' + currDigit
                 inserted = true;
                 break;
             }
         }
 
-        if (!inserted) numString.push('5');
     }
-
+    
+    if (!inserted) numString.push('5');
     return parseInt(numString.join(''), 10);
 }
 
@@ -93,7 +93,7 @@ console.log(solution(7))
 console.log(solution(-7))
 console.log(solution(515))
 console.log(solution(-515))
-console.log(solution(00000414))
-console.log(solution(-00000000414))
-console.log(solution(0000000474))
-console.log(solution(-00000474))
+console.log(solution(414))
+console.log(solution(-414))
+console.log(solution(474))
+console.log(solution(-474))
