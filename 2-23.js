@@ -73,3 +73,81 @@ function countPairs(numbers, k) {
 
     return Object.keys(validPairs).length
 }
+function billFor(month, activeSubscription, users) {
+    // your code here!
+    if (!activeSubscription || !users.length) return 0;
+
+    month = month + '-01';
+    let date = new Date(month);
+    let total = 0;
+
+    const dailyRate = activeSubscription.monthlyPriceInDollars / (lastDayOfMonth(date).getDate() - firstDayOfMonth(date).getDate())
+
+    while (date <= lastDayOfMonth(date)) {
+        for (let i = 0; i < users.length; i++) {
+            const user = users[i];
+
+            if (wasActiveThisDate(date, user)) {
+                total += dailyRate;
+
+            }
+        }
+
+        date = nextDay(date);
+    }
+
+    return parseInt(total.toFixed(2), 10);
+}
+
+function wasActiveThisDate(date, user) {
+    if ((user.activatedOn.getTime() <= date.getTime() && user.deactivatedOn === null) || (user.activatedOn.getTime() <= date.getTime() && user.deactivatedOn.getTime() >= date.getTime())) {
+        return true;
+    } else {
+        return false;
+    }
+
+}
+
+/*******************
+* Helper functions *
+*******************/
+
+/**
+  Takes a Date instance and returns a Date which is the first day
+  of that month. For example:
+
+  firstDayOfMonth(new Date(2019, 2, 7)) // => new Date(2019, 2, 1)
+
+  Input type: Date
+  Output type: Date
+**/
+function firstDayOfMonth(date) {
+    return new Date(date.getFullYear(), date.getMonth(), 1)
+}
+
+/**
+  Takes a Date object and returns a Date which is the last day
+  of that month. For example:
+
+  lastDayOfMonth(new Date(2019, 2, 7)) // => new Date(2019, 2, 28)
+
+  Input type: Date
+  Output type: Date
+**/
+function lastDayOfMonth(date) {
+    return new Date(date.getFullYear(), date.getMonth() + 1, 0)
+}
+
+/**
+  Takes a Date object and returns a Date which is the next day.
+  For example:
+
+  nextDay(new Date(2019, 2, 7))  // => new Date(2019, 2, 8)
+  nextDay(new Date(2019, 2, 28)) // => new Date(2019, 3, 1)
+
+  Input type: Date
+  Output type: Date
+**/
+function nextDay(date) {
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1)
+}
