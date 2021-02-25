@@ -83,13 +83,12 @@ function billFor(month, activeSubscription, users) {
 
     const dailyRate = activeSubscription.monthlyPriceInDollars / (lastDayOfMonth(date).getDate() - firstDayOfMonth(date).getDate())
 
-    while (date <= lastDayOfMonth(date)) {
+    while (date.getTime() <= lastDayOfMonth(date).getTime()) {
         for (let i = 0; i < users.length; i++) {
             const user = users[i];
 
             if (wasActiveThisDate(date, user)) {
                 total += dailyRate;
-
             }
         }
 
