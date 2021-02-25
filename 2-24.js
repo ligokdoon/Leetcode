@@ -36,5 +36,10 @@ var flatten = function (head) {
     }
 
     traverse(head);
-    return dummyNode.next;
+    // return dummyNode.next;
+
+    const result = dummyNode.next;
+    if (result) result.prev = null; // have to remove dummy head node because leetcode would not accept and conditional is for edge case
+
+    return result;
 };
