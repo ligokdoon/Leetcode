@@ -8,7 +8,7 @@
 // Input: n = 1
 // Output: ["()"]
 
-const generateParenthesis = (n, open = 0, close = 0, ans = [], current = '') => {
+const generateParenthesis = (n, open = 0, close = 0, result = [], current = '') => {
     if (current.length === n * 2) result.push(current);
     if (openCount < n) generateParenthesis(n, openCount + 1, closeCount, result, current + '(');
     if (openCount > closeCount) generateParenthesis(n, openCount, closeCount + 1, result, current + ')');

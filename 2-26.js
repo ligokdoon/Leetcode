@@ -31,6 +31,5 @@ var flatten = function (root) {
 
         linkedList = node;
     }
-
     return result;
 };
