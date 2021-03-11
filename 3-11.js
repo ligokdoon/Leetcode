@@ -53,11 +53,26 @@ function moveElementToEnd(array, toMove) {
     return array;
 }
 
-//recursive Nth Fib using memoization
+//recursive Nth Fib using memoization Time: O(n) Space: O(n)
 function getNthFib(n, cache = { 1: 0, 2: 1 }) {
-    // Write your code here.
     if (n in cache) return cache[n];
     cache[n] = getNthFib(n - 1, cache) + getNthFib(n - 2, cache);
     return cache[n];
+}
+
+//iterative fibs Time: O(n) Space: O(1)
+function getNthFib(n) {
+    const fibs = [0, 1];
+    let count = 3;
+
+    while (count <= n) {
+        const nextFib = fibs[0] + fibs[1];
+        fibs[0] = fibs[1];
+        fibs[1] = nextFib;
+        count++
+    }
+
+    return n > 1 ? fibs[1] : fibs[0];
+
 }
 
