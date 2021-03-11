@@ -53,4 +53,11 @@ function moveElementToEnd(array, toMove) {
     return array;
 }
 
-moveElementToEnd([2,1,2,2,2,3,4,2], 2);
+//recursive Nth Fib using memoization
+function getNthFib(n, cache = { 1: 0, 2: 1 }) {
+    // Write your code here.
+    if (n in cache) return cache[n];
+    cache[n] = getNthFib(n - 1, cache) + getNthFib(n - 2, cache);
+    return cache[n];
+}
+
