@@ -32,3 +32,25 @@ function twoNumberSum(array, targetSum) {
     return [];
 
 }
+
+function moveElementToEnd(array, toMove) {
+    let left = 0;
+    let right = array.length - 1;
+    
+    while (left < right) {
+        while (array[right] === toMove && left < right) {
+            right--;
+        }
+
+        if (array[left] === toMove) {
+            array[left] = array[right];
+            array[right] = toMove;
+        }
+        left++;
+        console.log(array);
+    }
+
+    return array;
+}
+
+moveElementToEnd([2,1,2,2,2,3,4,2], 2);
