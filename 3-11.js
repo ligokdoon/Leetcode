@@ -60,7 +60,7 @@ function getNthFib(n, cache = { 1: 0, 2: 1 }) {
     return cache[n];
 }
 
-//iterative fibs Time: O(n) Space: O(1)
+//iterative Nth fib Time: O(n) Space: O(1)
 function getNthFib(n) {
     const fibs = [0, 1];
     let count = 3;
