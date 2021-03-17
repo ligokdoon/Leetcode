@@ -14,3 +14,19 @@ function classPhotos(redShirtHeights, blueShirtHeights) {
     return true;
 }
 
+function numberOfWaysToMakeChange(n, denoms) {
+    // Write your code here.
+    let result = 0;
+
+    while (n > 0) {
+        const coin = denoms.pop();
+        while (n - coin > 0) {
+            n -= coin;
+            result++
+        }
+    }
+
+    return result;
+}
+
+
