@@ -1,3 +1,4 @@
+//Time: O(n) Space: O(1)
 function longestPeak(array) {	
     let longestPeak = 0;
 
