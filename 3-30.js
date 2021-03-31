@@ -1,5 +1,4 @@
 function generateDocument(characters, document) {
-    // Write your code here.
     const dictionary = {};
 
     for (let i = 0; i < characters.length; i++) {
